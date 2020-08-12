@@ -7,6 +7,13 @@ module.exports = {
         const produtos = await Produto.findAll();
 
         return res.json(produtos)
+    },
+
+    async showIten(req, res){
+
+        const produto = await Produto.findByPk(req.params.id);
+
+        return res.json(produto)
     }
 
 }

@@ -1,13 +1,22 @@
 const express = require('express')
-var cors = require('cors')
+const cors = require('cors')
 const routes = require('./routes')
 
-require('./database')
+const requireDir = require('require-dir');// facilitador para importar os arquivos de um diretório
 
 const app = express()
-app.use(cors())
 
 app.use(express.json())
+
+app.use(cors())
+
+// iniciando o BD
+require('./databaseSql')
+
+require('./dataBaseNoSql')
+
+requireDir('./models');
+
 app.use(routes)
 
-app.listen(3000)
+app.listen(4200)    
